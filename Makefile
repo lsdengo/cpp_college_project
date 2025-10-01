@@ -1,6 +1,6 @@
 CXX = g++
 CXXFLAGS = -std=c++17 -Wall
-TARGET = libraryApp
+TARGET = BookVault
 SOURCES = main.cpp library.cpp
 
 all: $(TARGET)
