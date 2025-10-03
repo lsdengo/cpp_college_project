@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-// Дефиниция на структурата
+// Defining a book structure
 struct book {
     int id;
     std::string title;
@@ -14,10 +14,10 @@ struct book {
     std::string isbn;
 };
 
-// Глобален брояч за ID-та
+// global ID counter
 extern int bookCounter;
 
-// Декларации на функциите
+// Function declarations
 book createBook(std::string title, std::string author, int year, std::string genre, std::string isbn);
 void printBook(const book& b);
 void printLibrary(const std::vector<book>& lib);

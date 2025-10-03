@@ -36,7 +36,7 @@ int main() {
                 pause();
                 break;
             case 6:
-                std::cout << "Изход...\n";
+                std::cout << "Exiting...\n";
                 break;
         }
     } while (choice != 6);

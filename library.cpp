@@ -4,7 +4,7 @@
 #include <sstream>
 #include <limits>
 
-int bookCounter = 0; // дефиниция на глобалния брояч
+int bookCounter = 0; // initializing a global counter
 
 book createBook(std::string title, std::string author, int year, std::string genre, std::string isbn) {
     book b;
@@ -19,10 +19,10 @@ book createBook(std::string title, std::string author, int year, std::string gen
 
 void printBook(const book& b) {
     std:: cout << "ID: " << b.id << "\n"
-               << "Заглавие: " << b.title << "\n"
-               << "Автор: " << b.author << "\n"
-               << "Година: " << b.year << "\n"
-               << "Жанр: " << b.genre << "\n"
+               << "Title: " << b.title << "\n"
+               << "Author: " << b.author << "\n"
+               << "Year: " << b.year << "\n"
+               << "Genre: " << b.genre << "\n"
                << "ISBN: " << b.isbn << "\n"
                << "-----------------------\n";
 }
@@ -36,14 +36,14 @@ void printLibrary(const std::vector<book>& lib) {
 int printMenu() {
     int userChoice;
     do {
-        std::cout << "\n=== Библиотека ===\n";
-        std::cout << "1. Покажи всички книги\n";
-        std::cout << "2. Добави книга\n";
-        std::cout << "3. Търси книга\n";
-        std::cout << "4. Обнови книга\n";
-        std::cout << "5. Изтрий книга\n";
-        std::cout << "6. Изход\n";
-        std::cout << "Вашият избор: ";
+        std::cout << "\n=== Library ===\n";
+        std::cout << "1. Show all books\n";
+        std::cout << "2. Add a book\n";
+        std::cout << "3. Book lookup\n";
+        std::cout << "4. Update a book\n";
+        std::cout << "5. Delete a book\n";
+        std::cout << "6. Exit\n";
+        std::cout << "Your choice: ";
         std::cin >> userChoice;
         std::cout << "\n";
 
@@ -56,40 +56,40 @@ void addBook(std::vector<book>& lib) {
     std::string title, author, genre, isbn;
     int year;
 
-    std::cin.ignore(); // чисти оставащия newline от предишния cin
+    std::cin.ignore(); // cleans up the remaining newline from the previous cin
 
-    std::cout << "Въведете заглавие: ";
+    std::cout << "Enter book title: ";
     std::getline(std::cin, title);
 
-    std::cout << "Въведете автор: ";
+    std::cout << "Enter book author: ";
     std::getline(std::cin, author);
 
-    std::cout << "Въведете година: ";
+    std::cout << "Enter year: ";
     std::cin >> year;
-    std::cin.ignore(); // пак чистим буфера
+    std::cin.ignore();
 
-    std::cout << "Въведете жанр: ";
+    std::cout << "Enter genre: ";
     std::getline(std::cin, genre);
 
-    std::cout << "Въведете ISBN: ";
+    std::cout << "Enter ISBN: ";
     std::getline(std::cin, isbn);
 
-    // Създава нова книга и я добавя
+    // Creates and adds a new book
     book newBook = createBook(title, author, year, genre, isbn);
     lib.push_back(newBook);
 
-    std::cout << "\nКнигата \"" << newBook.title << "\" беше добавена успешно!\n";
+    std::cout << "\nThe book \"" << newBook.title << "\" has been successfully added!\n";
 }
 
 void searchBook(const std::vector<book>& lib) {
     int option;
-    std::cout << "Търсене по:\n1. ID\n2. Заглавие\nВаш избор: ";
+    std::cout << "Search via:\n1. ID\n2. Title\nYour choice: ";
     std::cin >> option;
     std::cout << "\n";
 
     if (option == 1) {
         int searchId;
-        std::cout << "Въведете ID: ";
+        std::cout << "Enter book ID: ";
         std::cin >> searchId;
 
         bool found = false;
@@ -100,12 +100,12 @@ void searchBook(const std::vector<book>& lib) {
                 break;
             }
         }
-        if (!found) std::cout << "Няма книга с такова ID.\n";
+        if (!found) std::cout << "No matching book with said ID.\n";
 
     } else if (option == 2) {
         std::cin.ignore();
         std::string searchTitle;
-        std::cout << "Въведете заглавие: ";
+        std::cout << "Enter a book title: ";
         std::getline(std::cin, searchTitle);
 
         bool found = false;
@@ -115,17 +115,17 @@ void searchBook(const std::vector<book>& lib) {
                 found = true;
             }
         }
-        if (!found) std::cout << "Няма книга с такова заглавие.\n";
+        if (!found) std::cout << "No matching book with said title.\n";
     } else {
-        std::cout << "Невалиден избор.\n";
+        std::cout << "Invalid choice.\n";
     }
 }
 
 void updateBook(std::vector<book>& lib) {
     int updateId;
-    std::cout << "Въведете ID на книгата за обновяване: ";
+    std::cout << "Enter book ID to update: ";
     std::cin >> updateId;
-    std::cin.ignore(); // чистим буфера
+    std::cin.ignore(); // clearing the buffer
 
     bool found = false;
     for (auto& b : lib) {
@@ -133,46 +133,46 @@ void updateBook(std::vector<book>& lib) {
             found = true;
             std::string input;
 
-            std::cout << "Въведете ново заглавие (оставете празно за без промяна): ";
+            std::cout << "Enter a new title (leave blank for no change): ";
             std::getline(std::cin, input);
             if (!input.empty()) b.title = input;
 
-            std::cout << "Въведете нов автор (оставете празно за без промяна): ";
+            std::cout << "Enter new author (leave blank for no change): ";
             std::getline(std::cin, input);
             if (!input.empty()) b.author = input;
 
-            std::cout << "Въведете нова година (оставете празно за без промяна): ";
+            std::cout << "Enter new year (leave blank for no change): ";
             std::getline(std::cin, input);
             if (!input.empty()) b.year = std::stoi(input);
 
-            std::cout << "Въведете нов жанр (оставете празно за без промяна): ";
+            std::cout << "Enter a new genre (leave blank for no change): ";
             std::getline(std::cin, input);
             if (!input.empty()) b.genre = input;
 
-            std::cout << "Въведете нов ISBN (оставете празно за без промяна): ";
+            std::cout << "Enter new ISBN (leave blank for no change): ";
             std::getline(std::cin, input);
             if (!input.empty()) b.isbn = input;
 
-            std::cout << "\nКнигата беше успешно обновена!\n";
+            std::cout << "\nThe book has been updated successfully!\n";
             break;
         }
     }
 
     if (!found) {
-        std::cout << "Няма книга с ID: " << updateId << "\n";
+        std::cout << "No book found with ID: " << updateId << "\n";
     }
 }
 
 void pause() {
-    std::cout << "\nНатиснете Enter, за да продължите...";
+    std::cout << "\nPress enter to continue...";
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    std::cin.get(); // изчаква натискане на Enter
+    std::cin.get(); // waits for a key press
 }
 
-// Четене на книги от файл
+// Reading books from a file
 void loadLibrary(std::vector<book>& lib, const std::string& filename) {
     std::ifstream file(filename);
-    if (!file.is_open()) return; // ако няма файл, започваме празна библиотека
+    if (!file.is_open()) return; // if no file found, creates a new library
 
     std::string line;
     while (std::getline(file, line)) {
@@ -196,13 +196,13 @@ void loadLibrary(std::vector<book>& lib, const std::string& filename) {
 
         lib.push_back(b);
 
-        if (b.id > bookCounter) bookCounter = b.id; // за да не се дублират ID-та
+        if (b.id > bookCounter) bookCounter = b.id; // so that the IDs don't dublicate
     }
 
     file.close();
 }
 
-// Записване на книги във файл
+// Save books to a file
 void saveLibrary(const std::vector<book>& lib, const std::string& filename) {
     std::ofstream file(filename);
     for (const auto& b : lib) {
@@ -214,29 +214,29 @@ void saveLibrary(const std::vector<book>& lib, const std::string& filename) {
 
 void deleteBook(std::vector<book>& lib) {
     int delId;
-    std::cout << "Въведете ID на книгата за изтриване: ";
+    std::cout << "Enter book ID to delete: ";
     std::cin >> delId;
-    std::cin.ignore(); // чистим буфера
+    std::cin.ignore(); // buffer clear
 
     bool found = false;
     for (auto it = lib.begin(); it != lib.end(); ++it) {
         if (it->id == delId) {
             found = true;
-            std::cout << "Книгата \"" << it->title << "\" ще бъде изтрита. Потвърждавате ли? (y/n): ";
+            std::cout << "The book \"" << it->title << "\" will be deleted. Do you confirm? (y/n): ";
             char confirm;
             std::cin >> confirm;
             std::cin.ignore();
             if (confirm == 'y' || confirm == 'Y') {
                 lib.erase(it);
-                std::cout << "Книгата беше успешно изтрита!\n";
+                std::cout << "The book has been successfully deleted!\n";
             } else {
-                std::cout << "Изтриването беше отменено.\n";
+                std::cout << "Deletion aborted.\n";
             }
             break;
         }
     }
 
     if (!found) {
-        std::cout << "Няма книга с ID: " << delId << "\n";
+        std::cout << "No book found with ID: " << delId << "\n";
     }
 }
