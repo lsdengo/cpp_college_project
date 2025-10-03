@@ -1,50 +1,50 @@
 # 📚 BookVault - Library Management Console Application
 
-## Описание
-BookVault е конзолно приложение за управление на библиотека, написано на C++ с модулна структура (header + cpp файлове). Приложението позволява CRUD операции върху книги и съхранение на данните във файл (`library.txt`). Целта е да демонстрира умения за работа със структури, вектори, файлове и базови алгоритми, както и организация на код в отделни модули.
+## Description
+BookVault is a console-based library management application written in C++ with a modular structure (header + cpp files).  
+It provides full CRUD operations for books and stores data in a text file (`library.txt`).  
+The goal of the project is to demonstrate skills in working with structures, vectors, file handling, basic algorithms, and organizing code into separate modules.
 
 ---
 
-## ⚙️ Функционалности
-- **Покажи всички книги** – визуализира списъка с книги в библиотеката.
-- **Добави книга** – въвеждане на нова книга с ID, заглавие, автор, година, жанр и ISBN.
-- **Търси книга** – по ID или заглавие.
-- **Обнови книга** – редактиране на вече въведена книга (с възможност да оставиш някои полета непроменени).
-- **Изтрий книга** – изтриване на книга по ID с потвърждение.
-- **Съхранение във файл** – автоматично записване и четене на библиотеката от `library.txt`.
-- **Модулен код** – CRUD функции са отделени в `library.cpp` и декларирани в `library.h`.
+## ⚙️ Features
+- **View all books** – display a list of all books in the library.  
+- **Add a book** – enter a new book with ID, title, author, year, genre, and ISBN.  
+- **Search a book** – search by ID or title.  
+- **Update a book** – edit an existing book (with the option to leave some fields unchanged).  
+- **Delete a book** – remove a book by ID with confirmation.  
+- **File persistence** – automatically read and write library data from `library.txt`.  
+- **Modular code** – CRUD functions implemented in `library.cpp` and declared in `library.h`.  
 
 ---
 
-## 🛠️ Технологии
-- **Език:** C++17
-- **Структури от данни:** `struct book`, `std::vector<book>`
-- **Файлова работа:** четене и запис във текстов файл
-- **Интерфейс:** конзолен, с меню и избор на действия
+## 🛠️ Technologies
+- **Language:** C++17  
+- **Data structures:** `struct book`, `std::vector<book>`  
+- **File handling:** read/write from a text file  
+- **Interface:** console-based menu system  
 
 ---
 
-## 📁 Структура на проекта
+## 📁 Project Structure
 BookVault/<br> 
-├── main.cpp # Главен файл с менюто и цикъла на приложението<br>
-├── library.h # Хедър файл с декларации на CRUD функциите и структурата<br>
-├── library.cpp # Имплементация на всички CRUD функции и работа с файла<br>
-├── library.txt # Файл за съхранение на книгите<br>
-└── Makefile # Makefile за компилация
+├── main.cpp # main.cpp # Main file with the menu and program loop<br>
+├── library.h # Header file with CRUD declarations and book struct<br>
+├── library.cpp # Implementation of CRUD functions and file handling<br>
+├── library.txt # Data file for storing books<br>
+└── Makefile # Build configuration
 
 ---
 
-## 🚀 Как да стартираш
-1. Компилирай с Makefile:
+## 🚀 How to Run
+1. Compile with Makefile:  
 make
-3. Стартирай програмата:
+3. Run the program:
 ./BookVault
-3. Следвай менюто, за да управляваш библиотеката.
-
+3. Follow the menu to manage the library.
+   
 ---
 
-## 💡 Идеи за разширение
-- Добавяне на търсене по автор или жанр
-- Сортиране на книги по заглавие, автор или година
-- Въвеждане на графичен интерфейс (например с Qt или SFML)
-- Интеграция с база данни вместо текстов файл
+## 💡 Possible improvements
+- Introduce a graphical interface (e.g., Qt or SFML)
+- Replace text file storage with a database
